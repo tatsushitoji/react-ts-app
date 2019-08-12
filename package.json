@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
+    "lint": "eslint --color --cache 'src/**/*.ts{,x}'",
     "start": "webpack-dev-server --hot"
   },
   "repository": {
