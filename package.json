@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
     "start": "webpack-dev-server --hot"
   },
   "repository": {
@@ -42,6 +43,7 @@
     "prettier": "1.18.2",
     "stylelint": "10.1.0",
     "stylelint-config-recess-order": "2.0.3",
+    "terser-webpack-plugin": "1.4.1",
     "ts-node": "8.3.0",
     "typescript": "3.5.3",
     "webpack": "4.39.1",

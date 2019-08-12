@@ -78,26 +78,29 @@ module.exports  = (_, { mode }: { mode: string }) => {
     },
   });
 
-  // const production = merge(base, {
-  //   plugins: [
-  //     new BundleAnalyzerPlugin({ analyzerMode: 'static' }),
-  //   ],
-  //   optimization: {
-  //     minimizer: [
-  //       new TerserPlugin({
-  //         terserOptions: {
-  //           sourceMap: true,
-  //           parallel: true,
-  //           compress: {
-  //             collapse_vars: false, // workaround for a minifier's bug: https://github.com/terser-js/terser/issues/120
-  //             drop_console: true,
-  //           },
-  //         },
-  //       }),
-  //     ],
-  //   }
-  // });
+  const production = merge(base, {
+    // plugins: [
+    //   new BundleAnalyzerPlugin({ analyzerMode: 'static' }),
+    // ],
+    // performance: {
+    //   hints: false
+    // },
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            sourceMap: true,
+            parallel: true,
+            compress: {
+              collapse_vars: false, // workaround for a minifier's bug: https://github.com/terser-js/terser/issues/120
+              drop_console: true,
+            },
+          },
+        }),
+      ],
+    }
+  });
 
-  const config = development
+  const config = productionMode ? production : development
   return config
 }
