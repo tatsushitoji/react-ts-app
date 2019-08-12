@@ -1,11 +1,11 @@
-const path = require('path');
-const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const merge = require('webpack-merge')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin')
 
 // @ts-ignore
-module.exports  = (_, { mode }: { mode: string }) => {
+module.exports = (_, { mode }: { mode: string }) => {
   const productionMode = mode === 'production'
   const base = {
     entry: './src/index.tsx',
@@ -17,12 +17,12 @@ module.exports  = (_, { mode }: { mode: string }) => {
     },
 
     resolve: {
-      extensions: [".ts", ".tsx", ".js", ".json"],
+      extensions: ['.ts', '.tsx', '.js', '.json'],
     },
 
     module: {
       rules: [
-        { test: /\.tsx?$/, loader: "babel-loader" },
+        { test: /\.tsx?$/, loader: 'babel-loader' },
         // {
         //   test: /\.(sa|sc|c)ss$/,
         //   use: [
@@ -40,7 +40,7 @@ module.exports  = (_, { mode }: { mode: string }) => {
         //     }
         //   }]
         // }
-      ]
+      ],
     },
 
     plugins: [
@@ -62,21 +62,21 @@ module.exports  = (_, { mode }: { mode: string }) => {
             name: 'vendors',
             chunks: 'all',
             enforce: true,
-          }
+          },
         },
       },
     },
-  };
+  }
 
   const development = merge(base, {
-    devtool: "cheap-module-eval-source-map",
+    devtool: 'cheap-module-eval-source-map',
     devServer: {
       stats: { colors: true },
       port: 3000,
       historyApiFallback: true,
       open: true,
     },
-  });
+  })
 
   const production = merge(base, {
     // plugins: [
@@ -92,14 +92,14 @@ module.exports  = (_, { mode }: { mode: string }) => {
             sourceMap: true,
             parallel: true,
             compress: {
-              collapse_vars: false, // workaround for a minifier's bug: https://github.com/terser-js/terser/issues/120
-              drop_console: true,
+              collapseVars: false, // workaround for a minifier's bug: https://github.com/terser-js/terser/issues/120
+              dropConsole: true,
             },
           },
         }),
       ],
-    }
-  });
+    },
+  })
 
   const config = productionMode ? production : development
   return config

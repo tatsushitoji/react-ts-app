@@ -1,6 +1,6 @@
-import { hot } from "react-hot-loader";
-import * as React from "react";
+import { hot } from 'react-hot-loader'
+import * as React from 'react'
 
-const App: React.FC = () => <div>Hello App !!!!!</div>;
+const App: React.FC = () => <div>Hello App !!!!!</div>
 
-export default hot(module)(App);
+export default hot(module)(App)
