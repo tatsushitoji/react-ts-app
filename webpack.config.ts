@@ -2,13 +2,13 @@ const path = require('path');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 // @ts-ignore
 module.exports  = (_, { mode }: { mode: string }) => {
   const productionMode = mode === 'production'
   const base = {
-    entry: ['react-hot-loader/patch', './src/index.tsx'],
+    entry: './src/index.tsx',
 
     output: {
       filename: '[name].[hash].bundle.js',
@@ -64,12 +64,8 @@ module.exports  = (_, { mode }: { mode: string }) => {
             enforce: true,
           }
         },
-      }
+      },
     },
-
-    // node: {
-    //   fs: 'empty',
-    // },
   };
 
   const development = merge(base, {
