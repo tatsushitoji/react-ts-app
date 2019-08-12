@@ -8,6 +8,17 @@
     "lint": "eslint --color --cache 'src/**/*.ts{,x}'",
     "start": "webpack-dev-server --hot"
   },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tatsushitoji/react-app-ts.git"
@@ -41,6 +52,8 @@
     "eslint-plugin-react": "7.14.3",
     "eslint-plugin-react-hooks": "1.7.0",
     "html-webpack-plugin": "3.2.0",
+    "husky": "3.0.3",
+    "lint-staged": "9.2.1",
     "prettier": "1.18.2",
     "stylelint": "10.1.0",
     "stylelint-config-recess-order": "2.0.3",
