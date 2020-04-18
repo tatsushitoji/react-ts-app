@@ -86,18 +86,7 @@ module.exports = (_, { mode }: { mode: string }) => {
     //   hints: false
     // },
     optimization: {
-      minimizer: [
-        new TerserPlugin({
-          terserOptions: {
-            sourceMap: true,
-            parallel: true,
-            compress: {
-              collapseVars: false, // workaround for a minifier's bug: https://github.com/terser-js/terser/issues/120
-              dropConsole: true,
-            },
-          },
-        }),
-      ],
+      minimizer: [new TerserPlugin()],
     },
   })
 
