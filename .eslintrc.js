@@ -31,8 +31,10 @@ module.exports = {
       'ignorePackages',
       {
         js: 'never',
+        jsx: 'never',
         mjs: 'never',
         ts: 'never',
+        tsx: 'never',
       },
     ],
     'import/no-extraneous-dependencies': [
