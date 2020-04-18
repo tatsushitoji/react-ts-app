@@ -5,33 +5,58 @@ module.exports = {
   },
   extends: [
     "airbnb",
-    "plugin:@typescript-eslint/recommended",
-    'plugin:react/recommended',
+    'airbnb/hooks',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     'prettier/@typescript-eslint',
-    'prettier/react',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react-hooks'],
+  plugins: ['@typescript-eslint', 'react-hooks', 'prettier'],
   rules: {
-    'react-hooks/rules-of-hooks': 'error',
-    '@typescript-eslint/explicit-function-return-type': "off",
-    "@typescript-eslint/prefer-interface": "off",
-    "import/prefer-default-export": "off",
-    "import/no-unresolved": "off",
-    "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "error",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error", {
-      "vars": "all",
-      "args": "after-used",
-      "ignoreRestSiblings": false
-    }],
+    '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-member-accessibility': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        vars: 'all',
+        args: 'all',
+        ignoreRestSiblings: false,
+        argsIgnorePattern: '^_',
+      },
+    ],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        mjs: 'never',
+        ts: 'never',
+      },
+    ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          '**/*.config.{js,ts}',
+          '**/*.spec.ts',
+          '**/.storybook/**/*.ts',
+          '**/*.stories.ts',
+          '**/__fixtures__/**/*.ts',
+        ],
+      },
+    ],
+    'import/prefer-default-export': 0,
+    'import/no-default-export': 'error',
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
   },
   settings: {
-    react: {
-      version: 'detect',
+    'import/resolver': {
+      node: {
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
+        paths: ['./packages/client', './node_modules'],
+      },
     },
   },
 }
