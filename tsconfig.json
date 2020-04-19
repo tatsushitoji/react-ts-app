@@ -64,5 +64,6 @@
     "src/**/*",
     ".eslintrc.js",
     "prettier.config.js",
+    ".storybook/**/*",
   ]
 }
