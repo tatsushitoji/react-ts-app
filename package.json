@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --mode production",
     "lint": "eslint --color --cache 'src/**/*.ts{,x}'",
-    "start": "webpack-dev-server --hot"
+    "start": "webpack-dev-server --hot",
+    "tsc": "tsc --noEmit"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
