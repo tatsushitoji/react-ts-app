@@ -52,6 +52,8 @@ module.exports = {
     'import/prefer-default-export': 0,
     'import/no-default-export': 'error',
     'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
+    'react/jsx-key': ['error', { checkFragmentShorthand: true }],
+    'react/prop-types': 0,
   },
   settings: {
     'import/resolver': {
