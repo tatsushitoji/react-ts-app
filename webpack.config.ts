@@ -1,13 +1,13 @@
-const path = require('path')
-const merge = require('webpack-merge')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const TerserPlugin = require('terser-webpack-plugin')
+import path from 'path'
 
-// @ts-ignore
-module.exports = (_, { mode }: { mode: string }) => {
+import { ConfigurationFactory, Configuration } from 'webpack'
+import merge from 'webpack-merge'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import TerserPlugin from 'terser-webpack-plugin'
+
+const webpackConfig: ConfigurationFactory = (_env, { mode }) => {
   const productionMode = mode === 'production'
-  const base = {
+  const base: Configuration = {
     entry: './src/index.tsx',
 
     output: {
@@ -17,29 +17,21 @@ module.exports = (_, { mode }: { mode: string }) => {
     },
 
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.json'],
+      extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     },
 
     module: {
       rules: [
-        { test: /\.tsx?$/, loader: 'babel-loader' },
-        // {
-        //   test: /\.(sa|sc|c)ss$/,
-        //   use: [
-        //     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-        //     'css-loader',
-        //   ],
-        // },
-        // {
-        //   test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        //   use: [{
-        //     loader: 'file-loader',
-        //     options: {
-        //       name: '[name].[ext]',
-        //       outputPath: 'fonts',
-        //     }
-        //   }]
-        // }
+        {
+          test: /\.tsx?$/,
+          loader: 'babel-loader',
+          include: [path.resolve(__dirname)],
+          exclude: [/node_modules/],
+          options: {
+            cacheDirectory: true,
+            envName: mode || 'development',
+          },
+        },
       ],
     },
 
@@ -48,10 +40,6 @@ module.exports = (_, { mode }: { mode: string }) => {
         inject: true,
         template: 'src/index.html',
       }),
-      // new MiniCssExtractPlugin({
-      //   filename: devMode ? '[name].css' : '[name].[hash].css',
-      //   chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
-      // }),
     ],
 
     optimization: {
@@ -69,7 +57,9 @@ module.exports = (_, { mode }: { mode: string }) => {
   }
 
   const development = merge(base, {
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'inline-source-map',
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     devServer: {
       stats: { colors: true },
       port: 3000,
@@ -80,17 +70,10 @@ module.exports = (_, { mode }: { mode: string }) => {
       alias: {
         'react-dom': '@hot-loader/react-dom',
       },
-      extensions: ['.tsx', '.ts', '.js', '.jsx'],
     },
   })
 
   const production = merge(base, {
-    // plugins: [
-    //   new BundleAnalyzerPlugin({ analyzerMode: 'static' }),
-    // ],
-    // performance: {
-    //   hints: false
-    // },
     optimization: {
       minimizer: [new TerserPlugin()],
     },
@@ -99,3 +82,6 @@ module.exports = (_, { mode }: { mode: string }) => {
   const config = productionMode ? production : development
   return config
 }
+
+// eslint-disable-next-line import/no-default-export
+export default webpackConfig
