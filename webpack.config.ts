@@ -76,6 +76,12 @@ module.exports = (_, { mode }: { mode: string }) => {
       historyApiFallback: true,
       open: true,
     },
+    resolve: {
+      alias: {
+        'react-dom': '@hot-loader/react-dom',
+      },
+      extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    },
   })
 
   const production = merge(base, {
