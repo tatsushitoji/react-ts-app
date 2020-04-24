@@ -20,9 +20,7 @@
         "devDependencies"
       ],
       "groupName": "devDependencies"
-    },
-    {
-      "schedule": "before 6pm on Friday"
     }
-  ]
+  ],
+  "schedule": "before 6pm on Friday"
 }
