@@ -1,37 +1,32 @@
 {
   "name": "react-app-ts",
-  "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "webpack --mode production",
-    "lint": "eslint --color --cache 'src/**/*.ts{,x}'",
-    "start": "webpack-dev-server --hot",
-    "tsc": "tsc --noEmit",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
+  "license": "ISC",
+  "author": "",
+  "homepage": "https://github.com/tatsushitoji/react-app-ts#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tatsushitoji/react-app-ts.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/tatsushitoji/react-app-ts/issues"
   },
-  "homepage": "https://github.com/tatsushitoji/react-app-ts#readme",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build-storybook": "build-storybook",
+    "lint": "eslint --color --cache 'src/**/*.ts{,x}'",
+    "start": "webpack-dev-server --hot",
+    "storybook": "start-storybook -p 6006",
+    "tsc": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@types/react": "16.9.34",
+    "@types/react-dom": "16.9.6",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  },
   "devDependencies": {
     "@babel/core": "7.9.0",
     "@babel/plugin-proposal-class-properties": "7.8.3",
@@ -73,10 +68,18 @@
     "webpack-dev-server": "3.10.3",
     "webpack-merge": "4.2.2"
   },
-  "dependencies": {
-    "@types/react": "16.9.34",
-    "@types/react-dom": "16.9.6",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+  "keywords": [],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix"
+    ],
+    "package.json": [
+      "npx prettier-package-json --write"
+    ]
   }
 }
